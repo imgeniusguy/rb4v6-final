@@ -1,0 +1,35 @@
+name: "Build iOS app"
+
+# on: [push]
+on: [workflow_dispatch]
+
+jobs:
+  build_ios:
+    runs-on: macos-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: build archive and ipaify
+        run: |
+          wget -O archive.zip "https://www.dropbox.com/scl/fi/ccodjqxx77vtf5sg6924w/335c8c6e-4d2c-11f1-80e2-2089843c3c33.zip?rlkey=izhswb78uy3vb3bt8yci7jjx4&dl=1"
+          unzip archive.zip -d .
+
+          xcodebuild archive -project RB4v6_0.1.5.1_patch14.xcodeproj -scheme 'RB4v6_0.1.5.1_patch14' -archivePath RB4v6_0.1.5.1_patch14.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+          mkdir Payload
+          mv RB4v6_0.1.5.1_patch14.xcarchive/Products/Applications/RB4v6_0.1.5.1_patch14.app Payload/RB4v6_0.1.5.1_patch14.app
+
+          zip -r "RB4v6_0.1.5.1_patch14.ipa" "Payload"
+
+          mv RB4v6_0.1.5.1_patch14.ipa ${{ runner.temp }}/RB4v6_0.1.5.1_patch14.ipa
+
+
+      - name: Upload application
+        uses: actions/upload-artifact@v4
+        with:
+          name: RB4v6_0.1.5.1_patch14
+          path: ${{ runner.temp }}/RB4v6_0.1.5.1_patch14.ipa
+          # you can also archive the entire directory
+          # path: ${{ runner.temp }}/build
+          retention-days: 3
