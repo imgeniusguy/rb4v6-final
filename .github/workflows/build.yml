@@ -12,24 +12,24 @@ jobs:
 
       - name: build archive and ipaify
         run: |
-          wget -O archive.zip "https://www.dropbox.com/scl/fi/cmin3aeclnvysbwrwi94q/092c23e4-4d34-11f1-a8c1-2089843c3c33.zip?rlkey=pidixsdqbi7bs89brz3s8jbly&dl=1"
+          wget -O archive.zip "https://www.dropbox.com/scl/fi/pxwl0a9uezfgezsdmqd0k/ee67022b-4d34-11f1-9555-2089843c3c33.zip?rlkey=kwpe8x8tcb2x6k4ituit4himp&dl=1"
           unzip archive.zip -d .
 
-          xcodebuild archive -project RB4v6_OLD_0.1.5.1_patch14.xcodeproj -scheme 'RB4v6_OLD_0.1.5.1_patch14' -archivePath RB4v6_OLD_0.1.5.1_patch14.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild archive -project RB4v6_0.1.5.1_patch14.xcodeproj -scheme 'RB4v6_0.1.5.1_patch14' -archivePath RB4v6_0.1.5.1_patch14.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
           mkdir Payload
-          mv RB4v6_OLD_0.1.5.1_patch14.xcarchive/Products/Applications/RB4v6_OLD_0.1.5.1_patch14.app Payload/RB4v6_OLD_0.1.5.1_patch14.app
+          mv RB4v6_0.1.5.1_patch14.xcarchive/Products/Applications/RB4v6_0.1.5.1_patch14.app Payload/RB4v6_0.1.5.1_patch14.app
 
-          zip -r "RB4v6_OLD_0.1.5.1_patch14.ipa" "Payload"
+          zip -r "RB4v6_0.1.5.1_patch14.ipa" "Payload"
 
-          mv RB4v6_OLD_0.1.5.1_patch14.ipa ${{ runner.temp }}/RB4v6_OLD_0.1.5.1_patch14.ipa
+          mv RB4v6_0.1.5.1_patch14.ipa ${{ runner.temp }}/RB4v6_0.1.5.1_patch14.ipa
 
 
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: RB4v6_OLD_0.1.5.1_patch14
-          path: ${{ runner.temp }}/RB4v6_OLD_0.1.5.1_patch14.ipa
+          name: RB4v6_0.1.5.1_patch14
+          path: ${{ runner.temp }}/RB4v6_0.1.5.1_patch14.ipa
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           retention-days: 3
