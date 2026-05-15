@@ -12,7 +12,7 @@ jobs:
 
       - name: build archive and ipaify
         run: |
-          wget -O archive.zip "https://www.dropbox.com/scl/fi/s8gshv1fnbqd8qgdyx64h/dab4818c-5074-11f1-a329-2089843c3c33.zip?rlkey=n2ywdotdzaeea4jjdv11gdjik&dl=1"
+          wget -O archive.zip "https://www.dropbox.com/scl/fi/8uvch6yf7un7z9k17myly/bbc243a2-5076-11f1-af8f-2089843c3c33.zip?rlkey=5fujl8e9ziklti88av7081rl9&dl=1"
           unzip archive.zip -d .
 
           xcodebuild archive -project RB4v6.xcodeproj -scheme 'RB4v6' -archivePath RB4v6.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
