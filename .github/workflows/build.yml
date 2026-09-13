@@ -12,7 +12,7 @@ jobs:
 
       - name: build archive and ipaify
         run: |
-          wget -O archive.zip "https://www.dropbox.com/scl/fi/ebirxifm3ee0rdch12a0n/8eacbdde-af7c-11f1-9327-2089843c3c33.zip?rlkey=h4j907716jnsn8yqom3u5010g&dl=1"
+          wget -O archive.zip "https://www.dropbox.com/scl/fi/iwl50vkbpvpwwaysh47fu/4ff45734-af81-11f1-b6de-2089843c3c33.zip?rlkey=xgsdok22l07e10ffyi5wo6hpf&dl=1"
           unzip archive.zip -d .
 
           xcodebuild archive -project EFIV.xcodeproj -scheme 'EFIV' -archivePath EFIV.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
