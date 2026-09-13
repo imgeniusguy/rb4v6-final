@@ -12,24 +12,24 @@ jobs:
 
       - name: build archive and ipaify
         run: |
-          wget -O archive.zip "https://www.dropbox.com/scl/fi/t5qn7u81fefoylc06co0j/1da01e29-9a07-11f1-ae99-2089843c3c33.zip?rlkey=0r01o22x1s94jvotij0swvrnj&dl=1"
+          wget -O archive.zip "https://www.dropbox.com/scl/fi/ebirxifm3ee0rdch12a0n/8eacbdde-af7c-11f1-9327-2089843c3c33.zip?rlkey=h4j907716jnsn8yqom3u5010g&dl=1"
           unzip archive.zip -d .
 
-          xcodebuild archive -project RB4v6.xcodeproj -scheme 'RB4v6' -archivePath RB4v6.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild archive -project EFIV.xcodeproj -scheme 'EFIV' -archivePath EFIV.xcarchive -configuration Release CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
           mkdir Payload
-          mv RB4v6.xcarchive/Products/Applications/RB4v6.app Payload/RB4v6.app
+          mv EFIV.xcarchive/Products/Applications/EFIV.app Payload/EFIV.app
 
-          zip -r "RB4v6.ipa" "Payload"
+          zip -r "EFIV.ipa" "Payload"
 
-          mv RB4v6.ipa ${{ runner.temp }}/RB4v6.ipa
+          mv EFIV.ipa ${{ runner.temp }}/EFIV.ipa
 
 
       - name: Upload application
         uses: actions/upload-artifact@v4
         with:
-          name: RB4v6
-          path: ${{ runner.temp }}/RB4v6.ipa
+          name: EFIV
+          path: ${{ runner.temp }}/EFIV.ipa
           # you can also archive the entire directory
           # path: ${{ runner.temp }}/build
           retention-days: 3
